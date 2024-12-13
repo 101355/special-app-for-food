@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\TableCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('guest');
 
-Route::get('/admin', function() {
+Route::get('/admin', function () {
     return view('auth.login');
 });
 
@@ -31,4 +32,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('Admin.dashboard');
     })->name('dashboard');
+    //table category
+    Route::get('/table_category', TableCategory::class)->name('table_list');
 });
