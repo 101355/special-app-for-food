@@ -1,6 +1,8 @@
 <?php
 
-use App\Livewire\TableCategory;
+use App\Livewire\Table;
+use App\Livewire\MenuList;
+use App\Livewire\MenuCategoryList;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +34,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('Admin.dashboard');
     })->name('dashboard');
-    //table category
-    Route::get('/table_category', TableCategory::class)->name('table_list');
+    //table create
+    Route::get('/table_create', Table::class)->name('table_create');
+    //Menu Category
+    Route::get('/menu_category', MenuCategoryList::class)->name('menu_category');
+    // Menu Create
+    Route::get('/menu_create', MenuList::class)->name('menu_create');
 });

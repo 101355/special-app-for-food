@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="{{ asset('adminAssets/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('adminAssets/images/favicon.png') }}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     @livewireStyles
 </head>
 
@@ -440,27 +439,30 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="{{ url('table_category') }}">Table
+                                {{-- <li class="nav-item"> <a class="nav-link" href="{{ url('table_category') }}">Table
                                         Category</a>
-                                </li>
-                                <li class="nav-item"> <a class="nav-link" href="">Table</a>
+                                </li> --}}
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('table_create') }}">Table</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item nav-category">Forms and Datas</li>
+                    {{-- <li class="nav-item nav-category">Forms and Datas</li> --}}
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
                             aria-controls="form-elements">
                             <i class="menu-icon mdi mdi-card-text-outline"></i>
-                            <span class="menu-title">Form elements</span>
+                            <span class="menu-title">Menus</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="form-elements">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link"
-                                        href="{{ asset('adminAssets/pages/forms/basic_elements.html') }}">Basic
-                                        Elements</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ url('/menu_category') }}">Menu
+                                        Category</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ url('/menu_create') }}">Menu
+                                        List</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -553,7 +555,6 @@
     <script src="{{ asset('adminAssets/js/Chart.roundedBarCharts.js') }}"></script>
     <!-- End custom js for this page-->
     @livewireScripts
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

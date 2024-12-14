@@ -22,9 +22,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <h4 class="card-title">Table Categories</h4>
+                            <h4 class="card-title">Menu Category</h4>
                             <button type="button" class="btn btn-sm btn-info text-white" wire:click="openCreateModal">
-                                Add Table Category
+                                Create Category
                             </button>
                         </div>
                         <div class="table-responsive">
@@ -37,9 +37,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($tableCategories as $index => $category)
+                                    @foreach ($categories as $key => $category)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ ($categories->currentPage() - 1) * $categories->perPage() + $key + 1 }}
+                                            </td>
                                             <td>{{ $category->name }}</td>
                                             <td>
                                                 <button class="btn btn-sm btn-warning text-white"
@@ -52,8 +53,14 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="mt-3">
-                            {{ $tableCategories->links() }}
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="text-muted">
+                                Showing {{ $categories->firstItem() ?? 0 }} to {{ $categories->lastItem() ?? 0 }} of
+                                {{ $categories->total() }} results
+                            </div>
+                            <div>
+                                {{ $categories->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,16 +74,16 @@
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">{{ $tableCategoryId ? 'Edit Table Category' : 'Add Table Category' }}
+                        <h5 class="modal-title">{{ $categoryId ? 'Edit Menu Category' : 'Create Menu Category' }}
                         </h5>
                         <button type="button" class="btn-close" wire:click="closeModals"></button>
                     </div>
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="name">Name</label>
+                                <label for="name">Name <span class="text-danger">*</span></label>
                                 <input type="text" id="name" wire:model.defer="name" class="form-control"
-                                    placeholder="Enter category name">
+                                    placeholder="Enter Category name">
                                 @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -84,8 +91,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" wire:click="closeModals"
-                            class="btn btn-secondary text-white">Cancel</button>
+                        <button type="button" wire:click="closeModals" class="btn btn-dark text-white">Cancel</button>
                         <button type="button" wire:click="save" class="btn btn-primary">Save</button>
                     </div>
                 </div>
@@ -106,8 +112,7 @@
                         <p>Are you sure you want to delete this category?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" wire:click="closeModals"
-                            class="btn btn-secondary text-white">Cancel</button>
+                        <button type="button" wire:click="closeModals" class="btn btn-dark text-white">Cancel</button>
                         <button type="button" wire:click="delete" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
